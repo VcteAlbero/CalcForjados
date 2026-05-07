@@ -101,7 +101,7 @@ st.markdown(
     <footer>
         <p style="text-align:center; font-size:12px; color:gray;">
         Esta es una aplicación en pruebas. Si tienes comentarios o preguntas, por favor contacta con: 
-        <a href="mailto:valbero@uji.es">valbero@uji.es</a>.
+        <a href="mailto:valbero@uji.es">valbero@upv.es</a>.
         </p>
     </footer>
     """,
