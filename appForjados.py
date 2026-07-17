@@ -22,7 +22,12 @@ radio_option = st.sidebar.radio("Tipo de cálculo:", ["CONT", "ISO"])
 flagCONT = 1 if radio_option == "CONT" else 0
 #
 #EI = st.sidebar.number_input("RIGIDEZ (kNm2):", min_value=1, value=16800)
-
+#
+checkbox_option1b = st.sidebar.checkbox("coacc_izq")
+coacc_izq = 1 if checkbox_option1b else 0
+checkbox_option2b = st.sidebar.checkbox("coacc_der")
+coacc_der = 1 if checkbox_option2b else 0
+#
 # Generar una tabla editable en función de n vanos
 st.write("### Introduce los datos en la tabla:")
 if flagCarga ==1:
@@ -53,6 +58,19 @@ else:
 #Calculos
 MApoyos = calculosForjados.clapeyron(luces, flagCarga, carga_sup, carga_punt, x_punt, libre_izq, libre_der, flagCONT)
 ley_momentos = calculosForjados.Ley_M(luces, flagCarga, carga_sup, carga_punt, x_punt, libre_izq, libre_der, MApoyos)
+if coacc_izq == 1:
+    if libre_izq == 0:
+        M1=min(ley_momentos[0:luces[0]*100])
+        if M1<0:
+             MApoyos[0]=-0.15*M1
+    ley_momentos = calculosForjados.Ley_M(luces, flagCarga, carga_sup, carga_punt, x_punt, libre_izq, libre_der, MApoyos)
+if coacc_der == 1:
+    if libre_der == 0:
+        M1=min(ley_momentos[len(ley_momentos)-(luces[-1])*100:len(ley_momentos)])
+        if M1<0:
+             MApoyos[-1]=-0.15*M1
+    ley_momentos = calculosForjados.Ley_M(luces, flagCarga, carga_sup, carga_punt, x_punt, libre_izq, libre_der, MApoyos)
+
 ley_cortantes = calculosForjados.Ley_V(luces, flagCarga, carga_sup, carga_punt, x_punt, libre_izq, libre_der, MApoyos)
 #deformacion = calculosForjados.deformada(luces, ley_momentos, EI, libre_izq, libre_der)
 
