@@ -47,7 +47,7 @@ edited_data = st.data_editor(data, num_rows="dynamic")
 #Almacenar datos
 luces = np.array(edited_data["Luz (m)"])
 if flagCarga ==1:
-     carga_sup = np.array(edited_data["Carga (kN/m2)"])
+     carga_sup = np.array(edited_data["Carga (kN/m)"])
      carga_punt = []
      x_punt = []
 else:
