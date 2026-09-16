@@ -33,7 +33,7 @@ st.write("### Introduce los datos en la tabla:")
 if flagCarga ==1:
     data = pd.DataFrame({
         "Luz (m)": [5] * nvanos,
-        "Carga (kN/m2)": [2]*nvanos,
+        "Carga (kN/m)": [2]*nvanos,
     })
 else:
         data = pd.DataFrame({
