@@ -32,17 +32,24 @@ coacc_der = 1 if checkbox_option2b else 0
 st.write("### Introduce los datos en la tabla:")
 if flagCarga ==1:
     data = pd.DataFrame({
-        "Luz (m)": [5] * nvanos,
-        "Carga (kN/m)": [2]*nvanos,
+        "Luz (m)": [5.0] * nvanos,
+        "Carga (kN/m)": [2.0]*nvanos,
     })
 else:
         data = pd.DataFrame({
-        "Luz (m)": [5] * nvanos,
-        "Carga (kN)": [1]*nvanos,
+        "Luz (m)": [5.0] * nvanos,
+        "Carga (kN)": [1.0]*nvanos,
         "x_dist (m)": [2.5]*nvanos,
     })
 
-edited_data = st.data_editor(data, num_rows="dynamic")
+edited_data = st.data_editor(
+    data,
+    num_rows="dynamic",
+    column_config={
+        column: st.column_config.NumberColumn(column, format="%.2f")
+        for column in data.columns
+    },
+)
 
 #Almacenar datos
 luces = np.array(edited_data["Luz (m)"])
