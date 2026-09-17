@@ -67,13 +67,13 @@ MApoyos = calculosForjados.clapeyron(luces, flagCarga, carga_sup, carga_punt, x_
 ley_momentos = calculosForjados.Ley_M(luces, flagCarga, carga_sup, carga_punt, x_punt, libre_izq, libre_der, MApoyos)
 if coacc_izq == 1:
     if libre_izq == 0:
-        M1=min(ley_momentos[0:luces[0]*100])
+        M1=min(ley_momentos[0:int(round(luces[0]*100))])
         if M1<0:
              MApoyos[0]=-0.15*M1
     ley_momentos = calculosForjados.Ley_M(luces, flagCarga, carga_sup, carga_punt, x_punt, libre_izq, libre_der, MApoyos)
 if coacc_der == 1:
     if libre_der == 0:
-        M1=min(ley_momentos[len(ley_momentos)-(luces[-1])*100:len(ley_momentos)])
+        M1=min(ley_momentos[len(ley_momentos)-int(round(luces[-1]*100)):len(ley_momentos)])
         if M1<0:
              MApoyos[-1]=-0.15*M1
     ley_momentos = calculosForjados.Ley_M(luces, flagCarga, carga_sup, carga_punt, x_punt, libre_izq, libre_der, MApoyos)
